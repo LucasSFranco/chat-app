@@ -4,6 +4,9 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { App } from './App'
 
+import '@fontsource/nunito'
+import './styles/tailwind.css'
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
