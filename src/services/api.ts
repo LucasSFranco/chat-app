@@ -9,7 +9,7 @@ api.interceptors.request.use(
     const accessToken = sessionStorage.getItem('access_token')
 
     if (accessToken)
-      config.headers.authorization = `Bearer ${accessToken}`
+      config.headers = { ...config.headers, authorization: `Bearer ${accessToken}` }
 
     return config
   },
