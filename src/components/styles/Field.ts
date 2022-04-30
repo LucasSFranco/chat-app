@@ -7,20 +7,24 @@ export const FieldCSS = css({
 
   '.label': {
     color: '$gray500',
-    fontSize: '.625rem',
+    fontSize: '$xs',
     fontWeight: 700,
     textTransform: 'uppercase',
 
-    '&.message': {
-      fontSize: '.625rem',
+    '.message': {
+      fontSize: '$xs',
       fontWeight: 400,
       textTransform: 'none'
     }
   },
 
-  '&.error': {
-    '&.label': {
-      color: '$dangerBase'
+  variants: {
+    error: {
+      true: {
+        '.label': {
+          color: '$dangerBase'
+        }
+      }
     }
   }
 })

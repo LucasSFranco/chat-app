@@ -1,0 +1,15 @@
+{
+  "title": "Friends",
+  "all-tab": "All",
+  "pending-tab": "Pending",
+  "blocked-tab": "Blocked",
+  "add-friend-tab": "Add Friend",
+  "incoming-request": "Incoming friend request",
+  "outgoing-request": "Outgoing friend request",
+  "accepted-empty": "Looks like you haven't added any friends!",
+  "pending-empty": "There're no pending friend requests.",
+  "blocked-empty": "You can't unblock the void.",
+  "add-friend": "Add friend",
+  "email-placeholder": "Enter an email...",
+  "add-friend-btn": "Add Friend"
+}

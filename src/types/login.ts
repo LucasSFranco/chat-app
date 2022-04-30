@@ -8,6 +8,6 @@ export type Credentials = {
 export type LoginContextData = {
   credentials: Credentials
   loading: Loading
-  handleChange: (key: string, value: any) => void
+  handleChange: (name: string, value: any) => void
   signIn: () => void
 }

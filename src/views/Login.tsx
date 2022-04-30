@@ -1,8 +1,7 @@
 import React, { useContext } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 import { LoginContext } from '../contexts/login'
-import { i18n } from '../i18n'
 import { routes } from './routes'
 
 import { Button } from '../components/Button'
@@ -11,35 +10,50 @@ import { Link } from '../components/Link'
 import { TextField } from '../components/TextField'
 
 const Login: React.FC = () => {
+  const { t } = useTranslation(['login'])
   const login = useContext(LoginContext)
+
+  const credentials = login.credentials
+  const loading = login.loading
 
   const handleChange = login.handleChange
   const signIn = login.signIn
 
   return (
-    <div className="[ login ] w-full h-full flex items-center justify-center">
+    <main className="[ login ] w-full h-full flex items-center justify-center">
       <div className="p-4 w-full">
-        <h3 className="font-bold text-gray-800 text-center mb-2">{ i18n.t('login:title') }</h3>
-        <h6 className="text-gray-500 text-center mb-16">{ i18n.t('login:subtitle') }</h6>
+        <h3 className="font-bold text-gray-800 text-center mb-2">{ t('login:title') }</h3>
+        <h6 className="text-gray-500 text-center mb-16">{ t('login:subtitle') }</h6>
         <div className="grid gap-4">
-          <Field label={i18n.t('login:email')}>
-            <TextField key="email" _onChange={handleChange} />
+          <Field label={t('login:email')} error={credentials.email.error?.message}>
+            <TextField
+              name="email"
+              icon="envelope"
+              error={!!credentials.email.error}
+              onChange={handleChange}
+            />
           </Field>
-          <Field label={i18n.t('login:password')}>
-            <TextField key="password" type="password" _onChange={handleChange} />
+          <Field label={t('login:password')} error={credentials.password.error?.message}>
+            <TextField
+              name="password"
+              icon="lock"
+              type="password"
+              error={!!credentials.password.error}
+              onChange={handleChange}
+            />
           </Field>
           <div className="grid gap-3">
-            <Button onClick={signIn}>{ i18n.t('login:login-btn') }</Button>
+            <Button loading={loading.signIn} onClick={signIn}>{ t('login:login-btn') }</Button>
             <p className="text-gray-600 text-sm text-center">
-              { i18n.t('login:no-account') }
-              <RouterLink to={routes.register}>
-                <Link className="ml-1">{ i18n.t('login:to-register') }</Link>
-              </RouterLink>
+              { t('login:no-account') }
+              <Link className="ml-1" to={routes.register}>
+                { t('login:to-register') }
+              </Link>
             </p>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 

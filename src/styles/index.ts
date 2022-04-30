@@ -52,6 +52,13 @@ export const {
       gray700: '#374151',
       gray800: '#1f2937',
       gray900: '#111827'
+    },
+    fontSizes: {
+      xs: '.625rem',
+      sm: '.75rem',
+      md: '.875rem',
+      lg: '1rem',
+      xl: '1.125rem'
     }
   }
 })

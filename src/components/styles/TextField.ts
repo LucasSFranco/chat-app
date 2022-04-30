@@ -11,7 +11,7 @@ export const TextFieldCSS = css({
   position: 'relative',
   transition: 'border-color 250ms, color 250ms',
 
-  '& .input': {
+  '.input': {
     outline: 'none',
 
     width: '100%',
@@ -19,11 +19,15 @@ export const TextFieldCSS = css({
     color: 'inherit',
     padding: '.625rem .75rem',
     fontFamily: 'inherit',
-    fontSize: '.875rem',
-    lineHeight: '1rem'
+    fontSize: '$md',
+    lineHeight: '1rem',
+
+    '&::placeholder': {
+      color: '$gray300'
+    }
   },
 
-  '& .icon': {
+  '.icon': {
     pointerEvents: 'none',
 
     position: 'absolute',
