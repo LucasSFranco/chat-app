@@ -1,31 +1,43 @@
 import React from 'react'
+import c from 'classnames'
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
 import { styled } from '../styles'
 import { TextFieldCSS } from './styles/TextField'
 
+import { Icon } from './Icon'
+
 const TextField = styled('div', TextFieldCSS)
 
-export type TextFieldProps = React.ComponentProps<typeof TextField> & {
-  key: string
+export type TextFieldProps = Omit<React.ComponentProps<typeof TextField>, 'onChange'> & {
+  name: string
   type?: string
-  _onChange: (key: string, value: any) => void
+  placeholder?: string
+  icon?: IconProp
+  onChange: (value: any, name?: string) => void
 }
 
 const AppTextField: React.FC<TextFieldProps> = ({
-  key,
+  name,
   type = 'text',
-  _onChange,
+  placeholder,
+  icon,
+  className,
+  onChange,
   ...props
 }) => {
-  const handleChange = (value) => { _onChange(key, value) }
+  const handleChange = (value: string) => onChange(value, name)
 
   return (
-    <TextField className="text-field" {...props}>
+    <TextField className={c('text-field', className)} {...props}>
       <input
         className="input"
+        style={{ paddingRight: icon ? '2.5rem' : '.75rem' }}
         type={type}
+        placeholder={placeholder}
         onChange={(e) => handleChange(e.target.value)}
       />
+      { icon && <Icon icon={icon} /> }
     </TextField>
   )
 }
