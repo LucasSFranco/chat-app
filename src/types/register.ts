@@ -10,6 +10,6 @@ export type Credentials = {
 export type RegisterContextData = {
   credentials: Credentials
   loading: Loading
-  handleChange: (key: string, value: any) => void
+  handleChange: (name: string, value: any) => void
   signUp: () => void
 }
