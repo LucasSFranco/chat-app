@@ -1,22 +1,13 @@
-import i18n from 'i18next'
 
-import en from './locales/en'
-import pt from './locales/pt'
+import i18next from 'i18next'
+import { initReactI18next } from 'react-i18next'
+// @ts-ignore
+import backend from 'i18next-http-backend'
 
-// TODO: Add lazy loading to translations
-
-i18n.init({
-  ns: [
-    'common',
-    'forgot-password',
-    'login',
-    'register'
-  ],
-  fallbackLng: 'pt',
-  resources: {
-    en,
-    pt
-  }
-})
-
-export { i18n }
+i18next
+  .use(backend)
+  .use(initReactI18next)
+  .init({
+    lng: 'en',
+    fallbackLng: 'en'
+  })

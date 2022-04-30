@@ -4,7 +4,7 @@
   "username": "Username",
   "email": "Email",
   "password": "Password",
-  "confirm-password": "Confirm Password",
+  "confirm-password": "Confirm password",
   "register-btn": "Register",
   "to-login": "Already have an account?"
 }
