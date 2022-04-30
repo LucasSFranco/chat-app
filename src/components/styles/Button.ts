@@ -16,8 +16,6 @@ const pulsing = keyframes({
 })
 
 export const ButtonCSS = css({
-  minHeight: '2.125rem',
-
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -29,17 +27,14 @@ export const ButtonCSS = css({
   color: 'white',
   cursor: 'pointer',
   fontFamily: 'inherit',
-  fontSize: '.875rem',
   fontWeight: 700,
-  lineHeight: '1rem',
-  padding: '.625rem .75rem',
   transition: 'color 250ms, background-color 250ms, border-color 250ms',
 
-  '& .loading': {
+  '.loading': {
     display: 'flex',
     gap: '.25rem',
 
-    '& .dot': {
+    '.dot': {
       width: '.375rem',
       height: '.375rem',
 
@@ -58,8 +53,8 @@ export const ButtonCSS = css({
     }
   },
 
-  '& > .icon': {
-    fontSize: '1rem'
+  '.icon': {
+    fontSize: '$lg'
   },
 
   variants: {
@@ -94,10 +89,25 @@ export const ButtonCSS = css({
           borderColor: '$gray600'
         }
       }
+    },
+    size: {
+      md: {
+        fontSize: '$md',
+        lineHeight: '.1rem',
+        padding: '.625rem .75rem',
+        minHeight: '2.375rem'
+      },
+      sm: {
+        fontSize: '$sm',
+        lineHeight: '.875rem',
+        padding: '.5rem .625rem',
+        minHeight: '2rem'
+      }
     }
   },
 
   defaultVariants: {
-    style: 'primary'
+    style: 'primary',
+    size: 'md'
   }
 })
