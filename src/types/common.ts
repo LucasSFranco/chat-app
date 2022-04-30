@@ -1,8 +1,8 @@
 export type Loading = { [key: string]: boolean }
 
-export type ValidationError = { field: string, code: string }
+export type ValidationError = { path: string[], type: string, message: string }
 
 export type TextField = {
-  value: string,
+  value: string
   error?: ValidationError | null
 }
