@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react'
 
 import { api } from '../services/api'
 
-import { Loading } from '../types/common'
+import { Loading, ValidationError } from '../types/common'
 import { Credentials, RegisterContextData } from '../types/register'
 
 export const RegisterContext = createContext({} as RegisterContextData)
@@ -29,21 +29,33 @@ export const RegisterProvider: React.FC = ({ children }) => {
 
   const [loading, setLoading] = useState<Loading>({})
 
-  const handleChange = (key: string, value: any) => {
+  const handleChange = (value: any, name: keyof Credentials) => {
     setCredentials({
       ...credentials,
-      [key]: { ...credentials[key], value }
+      [name]: { ...credentials[name], value }
     })
   }
 
   const signUp = async () => {
     setLoading({ ...loading, signUp: true })
 
-    const data = Object.entries(credentials).reduce<any>((data, [key, field]) => ({ ...data, [key]: field.value }), {})
+    const data = Object.entries(credentials).reduce<any>((data, [name, field]) => ({ ...data, [name]: field.value }), {})
     try {
-      await api.post('/user/register', data)
-    } catch (e) {
-      console.log(e)
+      await api.post('/auth/register', data)
+    } catch (e: any) {
+      const validationErrors: ValidationError[] = e
+
+      const validatedCredentials = Object.entries(credentials)
+        .reduce<Credentials>((validatedCredentials, [name, field]) => {
+          const validationError = validationErrors.find(validationError => validationError.path.includes(name))
+
+          return {
+            ...validatedCredentials,
+            [name]: { ...field, error: validationError }
+          }
+        }, credentials)
+
+      setCredentials(validatedCredentials)
     }
 
     setLoading({ ...loading, signUp: false })
